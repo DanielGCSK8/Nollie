@@ -9,6 +9,7 @@ class CartController extends Controller
 {
     public function __construct()
     {
+        $this->middleware('auth');
         if(!\Session::has('cart')) \Session::put('cart', array());
     }
 
@@ -66,5 +67,22 @@ class CartController extends Controller
 
     
     }
+    public function shopping($id)
+    {
+        $product = Product::find($id);
+        return view('cart.shopping', compact('product'));
+    }
+
+    public function orderDetail()
+    {
+        if(count(\Session::get('cart')) == 0){
+            return redirect()->route('home');
+        }
+        $cart = \Session::get('cart');
+        $total = $this->total();
+        
+        return view('cart.order-detail', compact('cart', 'total'));
+    }
+
 
 }

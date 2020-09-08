@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use App\Category;
 use App\Product;
+use App\User;
 
 class ProductController extends Controller
 {
@@ -82,10 +83,9 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        $product = Product::find($id);
-        return view('products.show', compact('product'));
+        
     }
 
     /**

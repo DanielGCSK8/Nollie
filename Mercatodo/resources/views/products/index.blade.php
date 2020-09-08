@@ -31,7 +31,7 @@
       <tr>
       <td>{{$products->name}}</td>
       <td style="width:15%;"><img style="max-width:40%;width:auto;height:auto;" src="images/{{ $products->image }}"></td>
-      <td>{{$products->price}}</td>
+      <td>${{number_format($products->price) }}</td>
       <td>{{ $products->quantity }}</td>
       <td>{{ $products->description }}</td>
       

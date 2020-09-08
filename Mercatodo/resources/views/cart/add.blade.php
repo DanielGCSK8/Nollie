@@ -15,7 +15,7 @@
           <th>Producto</th>
           <th>Precio</th>
           <th>Cantidad</th>
-          <th>Total</th>
+          <th>Subtotal</th>
           <th>Quitar</th
 
        </tr>
@@ -58,7 +58,7 @@
   <hr>
   <h3>
     <span class="col-form-label">
-      Total General: ${{ number_format($total) }}
+      Total ${{ number_format($total) }}
 
     </span>
   </h3>
@@ -67,7 +67,14 @@
 
   <h3><span class="label label-warning"> No hay productos en su carrito </span> <h3>
     @endif
-  <a href="/home"><button type="submit" name="button" class="btn btn-success">Volver a la tienda</button> </a>
+
+    <div>
+  <a href="/home"><button type="submit" name="button" class="btn btn-success">Volver a la tienda</button>
+   </a>
+
+   <a href="{{ route('order-detail') }}"><button type="submit" name="button" class="btn btn-success">Continuar</button>
+   </a>
+    </div>
  
 
 @endsection

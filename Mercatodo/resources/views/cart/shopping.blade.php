@@ -17,7 +17,7 @@
                         <h2>{{ $product->name }}
                             </h2></div>
                     <br>
-                    <div style="font-size: 15px">Precio: {{ $product->price }}</div>
+                    <div style="font-size: 15px">Precio: ${{number_format($product->price) }}</div>
                     <div> <p>  {{ $product->description }} </p></div>
                 
                         <div style="padding-top: 20px"> 
@@ -34,11 +34,8 @@
         </tr>
 
 
-
-
-
-
 </table>
+
 
 
 

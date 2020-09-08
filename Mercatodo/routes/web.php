@@ -38,12 +38,7 @@ route::resource('products', 'ProductController');
 Route::get('/{id}/restore', 'ProductController@restore')->name('products.restore');
 
 //car
-Route::get('shop/compra', function () {
-   
-    
-    return view('car/shop');
 
-});
 
 
 Route::get('cart/show', [
@@ -70,6 +65,16 @@ Route::get('cart/update/{product}/{quantity?}', [
     'as' => 'cart-update',
     'uses' => 'CartController@update'
 ]);
+
+Route::get('shopping/{id}', [
+    'uses' => 'CartController@shopping'
+]);
+
+Route::get('order-detail', [
+    'as' => 'order-detail',
+    'uses' => 'CartController@orderDetail'
+]);
+
 
 
 

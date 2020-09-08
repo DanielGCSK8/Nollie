@@ -38,10 +38,10 @@
             <div class="card" style="width: 18rem;">
         
                 
-                <a href="/products/{{ $products->id }}"><img class="card-img-top" style="object-fit: cover; width:100%; height:350px;" src="/images/{{ $products->image }}" alt=""  >  </a>
+                <a href="shopping/{{ $products->id }}"><img class="card-img-top" style="object-fit: cover; width:100%; height:350px;" src="/images/{{ $products->image }}" alt=""  >  </a>
                 <div class="card-body">
                     <h5 class="card-title">{{ $products->name }}</h5>
-                    <h5 class="card-title">{{ $products->price }}</h5>
+                    <h5 class="card-title">${{number_format($products->price) }}</h5>
                     
                 </div>
             </div>
