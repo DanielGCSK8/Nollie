@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\File;
 use App\Category;
 use App\Product;
 use App\User;
+use App\http\Requests\ProductRequest;
 
 class ProductController extends Controller
 {
@@ -46,7 +47,7 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
         $Products = new Product();
 
@@ -56,16 +57,7 @@ class ProductController extends Controller
             $Products->image = $name;
             $file->move(public_path().'/images/', $name);
         }
-        $this->validate($request, [
-            'name' => 'required|min:3|max:30',
-            'price' => 'required|min:3|numeric',
-            'category_id' => 'required',
-            'quantity' => 'required|numeric',
-            
-            
-        ]);
-        
-
+   
         $Products->name = $request->get('name');
         $Products->price = $request->get('price');
         $Products->category_id = $request->get('category_id');

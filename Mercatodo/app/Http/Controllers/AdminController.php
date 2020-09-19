@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\http\Requests\AdminRequest;
 
 class AdminController extends Controller
 {
@@ -76,15 +77,10 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update($id, AdminRequest $request)
     {
         $user = User::findOrFail($id);
-        $validData = $request->validate([
-            'name' => 'required|min:3',
-            'cellphone' => 'required|min:10',
-            'email' => 'required|min:7'
-        ]);
-
+        
         $user->name = $request->get('name');
         $user->cellphone = $request->get('cellphone');
         $user->email = $request->get('email');

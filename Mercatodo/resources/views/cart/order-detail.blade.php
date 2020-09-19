@@ -11,7 +11,7 @@
 
 
 <div class="container">
-    <h3> Datos del Usuario </h3>
+    <h3 style="font-family: Times New Roman"> Datos del Usuario </h3>
 
     <table class="table table-bordered">
 
@@ -22,7 +22,7 @@
 </div>
 
 <div class="container">
-    <h3> Datos del pedido </h3>
+    <h3 style="font-family: Times New Roman"> Datos del pedido </h3>
 
     <table class="table table-bordered">
 

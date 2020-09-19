@@ -77,9 +77,12 @@
 </div>
   @else
   
-
-  <h3><span class="label label-warning"> No hay productos en su carrito </span> <h3>
+<center>
+  <hr>
+  <h3 style="font-family: Times New Roman">
+    No hay productos en su carrito <h3>
     <a href="/home"><button type="submit" name="button" class="btn btn-success">Volver a la tienda</button> </a>
+    </center>
     @endif
 
 
