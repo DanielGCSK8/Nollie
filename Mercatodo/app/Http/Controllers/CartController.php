@@ -17,6 +17,7 @@ class CartController extends Controller
     {
       $cart = \Session::get('cart');
       $total = $this->total();
+
       return view('cart.add', compact('cart', 'total'));
     }
 
@@ -44,6 +45,7 @@ class CartController extends Controller
         $cart = \Session::get('cart');
         $cart[$product->id]->quantity = $quantity;
         \Session::put('cart', $cart);
+        
 
         return redirect()->route('cart-show');
     }
