@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Product;
+use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
+use App\Model\Product;
 
 class CartController extends Controller
 {
@@ -13,7 +15,7 @@ class CartController extends Controller
         if(!\Session::has('cart')) \Session::put('cart', array());
     }
 
-    public function show()
+    public function show(): view
     {
       $cart = \Session::get('cart');
       $total = $this->total();

@@ -32,6 +32,11 @@
      <script src="https://kit.fontawesome.com/299603bcdb.js" crossorigin="anonymous"></script>
 </head>
 <body style="background-color:#FFFFFF">
+
+    @if(\Session::has('message'))
+       @include('payment.message')
+    @endif
+
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
@@ -54,8 +59,13 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="/products">Ver Productos</a>
                             </li> 
+
                             
                         @endif
+                        
+                        <li class="nav-item">
+                            <a class="nav-link" href="/orders">Historial de compras</a>
+                        </li> 
                        
                     </ul>
                     

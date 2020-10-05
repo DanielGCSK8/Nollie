@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-use App\User;
+use App\Model\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +35,7 @@ Route::put('/{id}/restore', 'AdminController@restore')->name('users.restore');
 
 route::resource('admin/users', 'AdminController');
 route::resource('products', 'ProductController');
+route::resource('orders', 'OrderController');
 Route::get('/{id}/restore', 'ProductController@restore')->name('products.restore');
 
 //car
@@ -70,10 +71,23 @@ Route::get('shopping/{id}', [
     'uses' => 'CartController@shopping'
 ]);
 
-Route::get('order-detail', [
-    'as' => 'order-detail',
+Route::get('cart-detail', [
+    'as' => 'cart-detail',
     'uses' => 'CartController@orderDetail'
 ]);
+
+//payments
+
+Route::get('confirmation', [
+'as' => 'confirmation',
+'uses' => 'PaymentsController@payment'
+]);
+
+Route::get('status', [
+    'as' => 'status',
+    'uses' => 'PaymentsController@status'
+    ]);
+
 
 
 

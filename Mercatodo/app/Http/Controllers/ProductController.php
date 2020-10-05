@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
-use App\Category;
-use App\Product;
-use App\User;
+use App\Model\Category;
+use App\Model\Product;
+use App\Model\User;
 use App\http\Requests\ProductRequest;
 
 class ProductController extends Controller

@@ -1,12 +1,13 @@
 <?php
 
-namespace App;
+namespace App\Model;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use App\Admin;
+
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -43,7 +44,12 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function role()
     {
-        return $this->belongsTo('App\Role', 'role_id');
+        return $this->belongsTo('App\Model\Role', 'role_id');
+    }
+
+    public function orders(): HasMany
+    {
+        return $this->hasMany(Order::class);
     }
 
 

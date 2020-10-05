@@ -52,7 +52,9 @@
 
     </h3><hr>
     <a href="{{ route('cart-show') }}" class="btn btn-success"> Regresar </a>
-    <a href="#" class="btn btn-success"> pagar </a>
+    <a href="{{ route('confirmation') }}" class="btn btn-success"> Pagar </a>
+    
+ 
 </div>
 
 
