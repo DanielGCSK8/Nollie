@@ -5,9 +5,9 @@ namespace Tests\Feature;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
-use App\User;
+use App\Model\User;
 
-class StoreTest extends TestCase
+class UpdateTest extends TestCase
 {
     /**
      * A basic feature test example.
@@ -30,6 +30,7 @@ class StoreTest extends TestCase
         assertRedirect('/home');
     }
 
+    /** @test */
     public function aNotAuthenticatedCannotListUsers()
     {
         $response = $this->get(route('users.index'));

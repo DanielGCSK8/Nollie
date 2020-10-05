@@ -3,26 +3,27 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Model\Order;
 use App\Model\User;
-use App\http\Requests\AdminRequest;
 
-class AdminController extends Controller
+class OrderController extends Controller
 {
-
-    public function __construct()
-    {
-        
-        $this->middleware('admin');
-    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function __construct()
     {
-        $users=User::withTrashed()->get();
-        return view('admin.users.index', compact('users'));
+        $this->middleware('auth');
+        
+    }
+    
+    public function index(User $user)
+    {
+        $orders = Auth::user()->orders;
+        return view('orders.index', compact('orders'));  
     }
 
     /**
@@ -65,9 +66,7 @@ class AdminController extends Controller
      */
     public function edit($id)
     {
-        $user = User::findOrFail($id);
-
-        return view('admin.users.edit', compact('user'));
+        //
     }
 
     /**
@@ -77,18 +76,9 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update($id, AdminRequest $request)
+    public function update(Request $request, $id)
     {
-        $user = User::findOrFail($id);
-        
-        $user->name = $request->get('name');
-        $user->cellphone = $request->get('cellphone');
-        $user->email = $request->get('email');
-        
-        $user->update();
-
-        return redirect('/admin/users');
-
+        //
     }
 
     /**
@@ -99,15 +89,6 @@ class AdminController extends Controller
      */
     public function destroy($id)
     {
-        $user = User::findOrFail($id);
-        $user->delete();
-        return redirect('/admin/users');
         //
-    }
-
-    public function restore($id)
-    {
-        User::onlyTrashed()->where('id', $id)->restore();
-        return redirect('/admin/users');
     }
 }

@@ -32,11 +32,16 @@
      <script src="https://kit.fontawesome.com/299603bcdb.js" crossorigin="anonymous"></script>
 </head>
 <body style="background-color:#FFFFFF">
+
+    @if(\Session::has('message'))
+       @include('payment.message')
+    @endif
+
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/home') }}">
-                    <img style="max-width:100%;width:99px;height:50px;" src="{{ config('app.img') }}">
+                    <img style="max-width:100%;width:170px;height:70px;" src="{{ config('app.img') }}">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -54,8 +59,13 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="/products">Ver Productos</a>
                             </li> 
+
                             
                         @endif
+                        
+                        <li class="nav-item">
+                            <a class="nav-link" href="/orders">Historial de compras</a>
+                        </li> 
                        
                     </ul>
                     

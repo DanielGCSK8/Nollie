@@ -3,19 +3,23 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Product;
+use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
+use App\Model\Product;
 
 class CartController extends Controller
 {
     public function __construct()
     {
+        $this->middleware('auth');
         if(!\Session::has('cart')) \Session::put('cart', array());
     }
 
-    public function show()
+    public function show(): view
     {
       $cart = \Session::get('cart');
       $total = $this->total();
+
       return view('cart.add', compact('cart', 'total'));
     }
 
@@ -43,6 +47,7 @@ class CartController extends Controller
         $cart = \Session::get('cart');
         $cart[$product->id]->quantity = $quantity;
         \Session::put('cart', $cart);
+        
 
         return redirect()->route('cart-show');
     }
@@ -66,5 +71,22 @@ class CartController extends Controller
 
     
     }
+    public function shopping($id)
+    {
+        $product = Product::find($id);
+        return view('cart.shopping', compact('product'));
+    }
+
+    public function orderDetail()
+    {
+        if(count(\Session::get('cart')) == 0){
+            return redirect()->route('home');
+        }
+        $cart = \Session::get('cart');
+        $total = $this->total();
+        
+        return view('cart.order-detail', compact('cart', 'total'));
+    }
+
 
 }

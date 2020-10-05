@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\User;
-use App\Product;
+use App\Model\User;
+use App\Model\Product;
 
 class HomeController extends Controller
 {

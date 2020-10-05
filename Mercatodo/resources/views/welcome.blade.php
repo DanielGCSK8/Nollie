@@ -98,7 +98,6 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                   
                     
                     <img style="max-width:100%;width:auto;height:auto;" src="{{ config('app.img') }}">
                 </div>
