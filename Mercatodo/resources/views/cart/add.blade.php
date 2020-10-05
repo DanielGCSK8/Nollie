@@ -25,7 +25,7 @@
                           <tr>
                               <td colspan=3> 
                                 <a href="/home"><button type="submit" name="button" class="btn btn-success">Volver a la tienda</button> </a>
-                                <a href="{{ route('order-detail') }}"><button type="submit" name="button" class="btn btn-success">Continuar</button></a>
+                                <a href="{{ route('cart-detail') }}"><button type="submit" name="button" class="btn btn-success">Continuar</button></a>
                                 <a href="{{ route('cart-trash') }}" class="btn btn-danger"> Vaciar Carrito </a>
                               </td>
                           </tr>

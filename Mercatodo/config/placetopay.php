@@ -11,5 +11,5 @@ return [
     'timeout' => env('PTP_TIMEOUT', 3.0),
 
     
-    'secretKey' => env('PTP_AUTH', '024h1IlD')
+    'secretKey' => env('PTP_SECRET_KEY', '024h1IlD')
 ];
