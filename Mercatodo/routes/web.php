@@ -88,9 +88,11 @@ Route::get('status', [
     'uses' => 'PaymentsController@status'
     ]);
 
-    //exports
+    //excel
 
     Route::get('exportProducts', 'ExportController@exportProducts')->name('exportProducts');
+    Route::post('importProducts', 'ImportController@import')->name('importProducts');
+    
 
 
 
