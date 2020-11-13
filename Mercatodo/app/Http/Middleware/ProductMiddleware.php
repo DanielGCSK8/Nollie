@@ -19,7 +19,7 @@ class ProductMiddleware
 
         if(Auth::check() && Auth::user()->role_id=='1'){
             return $next($request);
-        return redirect('products.create');
+        return redirect('/products');
 
         }else{
             return redirect('/home');
