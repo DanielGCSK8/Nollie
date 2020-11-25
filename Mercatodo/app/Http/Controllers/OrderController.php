@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 use Illuminate\Support\Facades\Auth;
 use App\Model\Order;
 use App\Model\User;
@@ -20,8 +21,19 @@ class OrderController extends Controller
         
     }
     
-    public function index(User $user)
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index(User $user): View
     {
+         
+        if((Auth::user()->role_id) == 1){
+                $orders = Order::all();
+                return view('orders.index', compact('orders'));
+        }
+        
         $orders = Auth::user()->orders;
         return view('orders.index', compact('orders'));  
     }

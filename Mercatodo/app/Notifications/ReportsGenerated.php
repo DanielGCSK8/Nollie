@@ -6,20 +6,18 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class ExportsGenerated extends Notification
+class ReportsGenerated extends Notification
 {
     use Queueable;
 
-    protected $excelName;
 
     /**
      * Create a new notification instance.
      *
-     * @param string $excelName
      */
-    public function __construct($excelName)
+    public function __construct()
     {
-        $this->excelName = $excelName;
+        
     }
 
     /**
@@ -28,7 +26,7 @@ class ExportsGenerated extends Notification
      * @param  mixed  $notifiable
      * @return array
      */
-    public function via($notifiable): array
+    public function via($notifiable)
     {
         return ['mail'];
     }
@@ -37,15 +35,13 @@ class ExportsGenerated extends Notification
      * Get the mail representation of the notification.
      *
      * @param  mixed  $notifiable
-     * @return MailMessage
+     * @return \Illuminate\Notifications\Messages\MailMessage
      */
     public function toMail($notifiable): MailMessage
     {
         return (new MailMessage)
-                    ->attach(storage_path('app/public/exports/') . $this->excelName)
-                    ->subject(trans('Products'))
-                    ->line(trans('Los productos han sido exportados satisfactoriamente'));
-                    
+                    ->subject(trans('Reportes'))
+                    ->line(trans('El reporte se ha descargado satisfactoriamente.'));
                     
     }
 
@@ -55,7 +51,7 @@ class ExportsGenerated extends Notification
      * @param  mixed  $notifiable
      * @return array
      */
-    public function toArray($notifiable): array
+    public function toArray($notifiable): Array
     {
         return [
             //

@@ -2,7 +2,7 @@
 
 namespace App\Jobs;
 
-use App\Models\User;
+use App\Model\User;
 use Illuminate\Bus\Queueable;
 use App\Notifications\ExportsGenerated;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -22,9 +22,9 @@ class NotifyCompletedExport implements ShouldQueue
 
     /**
      * Create a new job instance.
-     *
      * @param $user
      * @param $excelName
+     * @return void
      */
     public function __construct($user,$excelName)
     {

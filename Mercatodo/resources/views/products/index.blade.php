@@ -99,10 +99,12 @@
                   </table>
                   <br>
                   <a href="{{ route('exportProducts') }}"><button type="submit" name="button" class="btn btn-success">Exportar excel</button> </a>
-
-
+                  <a href="{{route('pdf')}}"><button type="submit" name="button" class="btn btn-success">Productos más vendidos</button> </a>
+                  <a href="{{route('clientsActive')}}"><button type="submit" name="button" class="btn btn-success">Clientes más activos</button> </a>
+                   
                   <form action="{{ route('importProducts') }}" method="post" enctype="multipart/form-data" >
                     @csrf
+                    <br>
                   <input type="file" name="file" value="" accept=".xlsx">
                   <button type="submit" class="btn btn-success">Importar</button>
                   @if ( session('message'))
