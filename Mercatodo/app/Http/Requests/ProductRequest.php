@@ -26,8 +26,9 @@ class ProductRequest extends FormRequest
         return [
             'name' => 'required|min:3|max:30',
             'price' => 'required|min:3|numeric',
-            'category_id' => 'required',
-            'quantity' => 'required|numeric'
+            'category_id' => 'required|numeric|exists:categories,id',
+            'quantity' => 'required|numeric',
+            'image' => 'mimes:jpg,jpeg,png'
         ];
     }
 }
