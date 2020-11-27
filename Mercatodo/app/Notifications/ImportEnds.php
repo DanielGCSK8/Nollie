@@ -33,7 +33,8 @@ class ImportEnds extends Notification
     public function toMail($notifiable): MailMessage
     {
         return (new MailMessage())
-            ->subject(trans('Products saved'));
+            ->subject(trans('Productos importados'))
+            ->line(trans('Los productos han sido importados satisfactoriamente.'));
             
     }
 

@@ -9,8 +9,9 @@ use Maatwebsite\Excel\Concerns\Importable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Maatwebsite\Excel\Concerns\WithChunkReading;
 use Maatwebsite\Excel\Concerns\WithValidation;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class ProductsImport implements ToModel, ShouldQueue, WithChunkReading, WithValidation
+class ProductsImport implements ToModel, ShouldQueue, WithChunkReading, WithValidation, WithHeadingRow
 {
     use Importable;
     /**
@@ -18,12 +19,13 @@ class ProductsImport implements ToModel, ShouldQueue, WithChunkReading, WithVali
     */
     public function model(array $row)
     {
+        
         return new Product([
-            'name' => $row[1],
-            'price' => $row[2],
-            'category_id' => $row[3],
-            'quantity' => $row[8],
-            'description' => $row[9],
+            'name' => $row['name'],
+            'price' => $row['price'],
+            'category_id' => $row['category_id'],
+            'quantity' => $row['quantity'],
+            'description' => $row['description'],
         ]);
     }
     /**
@@ -32,7 +34,7 @@ class ProductsImport implements ToModel, ShouldQueue, WithChunkReading, WithVali
     public function rules(): array
     {
         return [
-            'name' => 'required',
+            'name' => 'required|string|min:5|max:100',
             'price' => 'required|numeric|min:1|max:9999999',
             'category_id' => 'required|numeric|exists:categories,id',
             'quantity' => 'required|numeric',
@@ -48,4 +50,6 @@ class ProductsImport implements ToModel, ShouldQueue, WithChunkReading, WithVali
     {
         return 1000;
     }
+
+     
 }

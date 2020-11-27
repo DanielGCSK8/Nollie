@@ -2,7 +2,7 @@
 
 namespace App\Jobs;
 
-use App\Models\Admin\Admin;
+use App\Model\User;
 use Illuminate\Bus\Queueable;
 use App\Imports\ProductsImport;
 use App\Notifications\ImportEnds;

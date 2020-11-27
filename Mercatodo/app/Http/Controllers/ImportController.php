@@ -20,9 +20,10 @@ class ImportController extends Controller
      */
     public function import(ImportRequest $request): RedirectResponse
     {
-        (new ProductsImport)->queue($request->file('file'), 'imports')->chain([
+        (new ProductsImport)->queue($request->file('file'))->chain([
             new NotifyCompletedImport($request->user()),
         ]);
+        
         return back()->with('message', __('Importando productos... Se te notificará cuando la importación haya terminado.'));
     }
 
