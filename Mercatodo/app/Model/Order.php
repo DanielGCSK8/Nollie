@@ -16,4 +16,9 @@ class Order extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function userId(): BelongsTo
+    {
+        return $this->belongsTo('App\Model\User', 'user_id');
+    }
+
 }

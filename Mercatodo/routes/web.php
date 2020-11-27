@@ -92,6 +92,11 @@ Route::get('status', [
 
     Route::get('exportProducts', 'ExportController@exportProducts')->name('exportProducts');
     Route::post('importProducts', 'ImportController@import')->name('importProducts');
+
+
+    //reports
+    Route::get('pdf', 'ReportController@ProductsMoreSelling')->name('pdf');
+    Route::get('clientsActive', 'ReportController@ClientsMoreActive')->name('clientsActive');
     
 
 

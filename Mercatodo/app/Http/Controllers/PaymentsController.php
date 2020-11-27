@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Model\Auth;
 use App\Model\Order;
 use App\Model\OrderDetail;
+use App\Model\Product;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Exception\ClientException;
@@ -173,6 +174,7 @@ class PaymentsController extends Controller
 
       foreach($cart as $product){
           $this->saveOrderDetail($product, $order->id);
+          $this->saveSold($product);
       }
  }
 
@@ -186,6 +188,16 @@ class PaymentsController extends Controller
          'quantity' => $product->quantity
 
      ]);
+ }
+
+ protected function saveSold($product)
+ {
+     $Products = Product::where('id', $product->id)->get();
+     foreach($Products as $prod){
+         $prod->sold = ($prod->sold) + $product->quantity;
+         $prod->save();
+     }
+
  }
 
 }
