@@ -88,6 +88,9 @@ Route::get('status', [
     'uses' => 'PaymentsController@status'
     ]);
 
+    //exports
+
+    Route::get('exportProducts', 'ExportController@exportProducts')->name('exportProducts');
 
 
 
