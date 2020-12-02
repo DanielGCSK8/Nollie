@@ -9,6 +9,15 @@ use Illuminate\Http\RedirectResponse;
 
 class ExportController extends Controller 
 {
+    public function __construct()
+    {
+        
+        $this->middleware('product');
+    }
+    
+     /** 
+     * @return RedirectResponse
+     */
     public function exportProducts(): RedirectResponse
     {
         $fileName = 'products_' . now()->format('Y-m-d') .'.xlsx';

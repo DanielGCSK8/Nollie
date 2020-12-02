@@ -2,14 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Barryvdh\DomPDF\Facade as PDF;
 use App\Model\Product;
-use App\Model\User;
-use App\Model\Order;
 use App\Jobs\NotifyCompletedReports;
-
+use Illuminate\Http\Response;
 
 class ReportController extends Controller
 {
@@ -21,7 +18,10 @@ class ReportController extends Controller
   }
 
 
-    public function ProductsMoreSelling()
+    /**
+     * @return Response
+     */
+    public function ProductsMoreSelling(): Response
     {
       $Products = Product::orderBy('sold','desc')->get(['id','name','price','category_id','sold']);
 
@@ -34,7 +34,10 @@ class ReportController extends Controller
 
     }
 
-    public function ClientsMoreActive()
+    /**
+     * @return Response
+     */
+    public function ClientsMoreActive(): Response
     {
 
        $clients = DB::table('users as u')

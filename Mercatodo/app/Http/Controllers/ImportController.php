@@ -13,6 +13,12 @@ use Maatwebsite\Excel\Validators\ValidationException;
 
 class ImportController extends Controller
 {
+
+    public function __construct()
+    {
+        
+        $this->middleware('product');
+    }
     /**
      * Imports a listing of the resource.
      * @param ImportRequest $request

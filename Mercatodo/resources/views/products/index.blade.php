@@ -102,7 +102,8 @@
                   <a href="{{route('pdf')}}"><button type="submit" name="button" class="btn btn-success">Productos más vendidos</button> </a>
                   <a href="{{route('clientsActive')}}"><button type="submit" name="button" class="btn btn-success">Clientes más activos</button> </a>
                    
-                  <form action="{{ route('importProducts') }}" method="post" enctype="multipart/form-data" >
+                  <form action="{{ route('importProducts') }}" method="POST" enctype="multipart/form-data" >
+                    @method('GET')
                     @csrf
                     <br>
                   <input type="file" name="file" value="" accept=".xlsx">

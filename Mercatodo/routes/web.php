@@ -91,7 +91,7 @@ Route::get('status', [
     //excel
 
     Route::get('exportProducts', 'ExportController@exportProducts')->name('exportProducts');
-    Route::post('importProducts', 'ImportController@import')->name('importProducts');
+    Route::get('importProducts', 'ImportController@import')->name('importProducts');
 
 
     //reports

@@ -8,6 +8,8 @@ use App\Model\Category;
 use App\Model\Product;
 use App\Model\User;
 use App\http\Requests\ProductRequest;
+use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
 
 class ProductController extends Controller
 {
@@ -22,7 +24,7 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(): View
     {
         $Categories = Category::all();
         $Products = Product::withTrashed()->get();
@@ -35,7 +37,7 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(): View
     {
         $Categories = Category::all();
         return view('products.create', compact('Categories'));
@@ -47,7 +49,7 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ProductRequest $request)
+    public function store(ProductRequest $request): RedirectResponse
     {
         $Products = new Product();
 
@@ -86,7 +88,7 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(int $id)
+    public function edit(int $id): View
     {
         $Categories = Category::all();
         $Products = Product::findOrFail($id);
@@ -101,7 +103,7 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, int $id)
+    public function update(Request $request, int $id): RedirectResponse
     {
         $Products = Product::findOrFail($id);
         
@@ -140,14 +142,14 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(int $id)
+    public function destroy(int $id): RedirectResponse
     {
         $Products = Product::findOrFail($id);
         $Products->delete();
         return redirect('/products');
     }
 
-    public function restore(int $id)
+    public function restore(int $id): RedirectResponse
     {
         Product::onlyTrashed()->where('id', $id)->restore();
         return redirect('/products');

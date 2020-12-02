@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
 use App\Model\Auth;
 use App\Model\Order;
 use App\Model\OrderDetail;
@@ -13,7 +14,7 @@ use GuzzleHttp\Exception\ClientException;
 
 class PaymentsController extends Controller
 {
-   public function payment() 
+   public function payment(): RedirectResponse
    {
     $login     = config('placetopay.authId');
     $secretKey = config('placetopay.secretKey');
@@ -93,7 +94,7 @@ class PaymentsController extends Controller
  }
 
 
-   public function status()
+   public function status(): RedirectResponse
    {
     $login     = config('placetopay.authId');
     $secretKey = config('placetopay.secretKey');
@@ -157,7 +158,7 @@ class PaymentsController extends Controller
     
  }
 
- protected function saveOrder()
+ protected function saveOrder(): Void
  {
   $cart = \Session::get('cart');
   $total = 0;
@@ -179,7 +180,7 @@ class PaymentsController extends Controller
  }
 
   
- protected function saveOrderDetail($product, $order_id)
+ protected function saveOrderDetail($product, $order_id): Void
  {
      OrderDetail::create([
          'order_id' => $order_id,
@@ -190,7 +191,7 @@ class PaymentsController extends Controller
      ]);
  }
 
- protected function saveSold($product)
+ protected function saveSold($product): Void
  {
      $Products = Product::where('id', $product->id)->get();
      foreach($Products as $prod){

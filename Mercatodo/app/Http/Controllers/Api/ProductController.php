@@ -25,8 +25,9 @@ class ProductController extends Controller
   
     /**
      * @param $file
+     * @return String
      */
-    private function uploadFile($file)
+    private function uploadFile($file): String
     {
         $name = time() . "." . $file->getClientOriginalExtension();
         $file->move(public_path('images'), $name);
