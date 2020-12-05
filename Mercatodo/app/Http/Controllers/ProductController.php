@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use App\Model\Category;
 use App\Model\Product;
-use App\Model\User;
 use App\http\Requests\ProductRequest;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -26,7 +25,7 @@ class ProductController extends Controller
      */
     public function index(): View
     {
-        $Categories = Category::all();
+        $Categories = Category::CacheCategories();
         $Products = Product::withTrashed()->get();
         return view('products.index', compact('Products','Categories'));
         
@@ -39,7 +38,7 @@ class ProductController extends Controller
      */
     public function create(): View
     {
-        $Categories = Category::all();
+        $Categories = Category::CacheCategories();
         return view('products.create', compact('Categories'));
     }
 
@@ -90,7 +89,7 @@ class ProductController extends Controller
      */
     public function edit(int $id): View
     {
-        $Categories = Category::all();
+        $Categories = Category::CacheCategories();
         $Products = Product::findOrFail($id);
 
         return view('products.edit', compact('Products', 'Categories'));

@@ -29,9 +29,6 @@ class ReportController extends Controller
       NotifyCompletedReports::dispatch(request()->user());
 
       return $pdf->download('productsMoreSelling.pdf');
-      
-
-
     }
 
     /**

@@ -26,7 +26,7 @@ Route::get('/', function () {
 Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
-Route::put('/{id}/restore', 'AdminController@restore')->name('users.restore');
+Route::get('/{id}/restoreUser', 'AdminController@restoreUser')->name('users.restore');
 
 
 //Auth::routes();

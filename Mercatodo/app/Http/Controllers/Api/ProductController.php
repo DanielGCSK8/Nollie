@@ -77,9 +77,7 @@ class ProductController extends Controller
             $img = public_path() . '/images/'. $product->image;
             File::delete($img);
             $input['image'] = $this->uploadFile($request->image);
-            
         }
-        $input = $request->all();
         $product->update($input);
         return response()->json([
             'res' => true,

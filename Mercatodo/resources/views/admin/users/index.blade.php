@@ -52,8 +52,8 @@
                                   @endif
                     
                                   @if($user->trashed())
-                                  <form action="{{route('users.restore', $user->id)}}" method="POST">
-                                    @method('PUT')
+                                  <form action="{{route('users.restore', $user->id)}}" method="GET">
+                                    @method('GET')
                                     @csrf
                                   <button type="submit" class="btn btn-default ml-2">Habilitar</td>
                                   @endif
