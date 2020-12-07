@@ -26,7 +26,7 @@ Route::get('/', function () {
 Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
-Route::put('/{id}/restore', 'AdminController@restore')->name('users.restore');
+Route::get('/{id}/restoreUser', 'AdminController@restoreUser')->name('users.restore');
 
 
 //Auth::routes();
@@ -88,6 +88,16 @@ Route::get('status', [
     'uses' => 'PaymentsController@status'
     ]);
 
+    //excel
+
+    Route::get('exportProducts', 'ExportController@exportProducts')->name('exportProducts');
+    Route::get('importProducts', 'ImportController@import')->name('importProducts');
+
+
+    //reports
+    Route::get('pdf', 'ReportController@ProductsMoreSelling')->name('pdf');
+    Route::get('clientsActive', 'ReportController@ClientsMoreActive')->name('clientsActive');
+    
 
 
 

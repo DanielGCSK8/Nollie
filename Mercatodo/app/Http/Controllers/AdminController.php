@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Model\User;
 use App\http\Requests\AdminRequest;
+use Illuminate\Support\Str;
+use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
 
 class AdminController extends Controller
 {
@@ -19,7 +22,7 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(): View
     {
         $users=User::withTrashed()->get();
         return view('admin.users.index', compact('users'));
@@ -63,7 +66,7 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id): View
     {
         $user = User::findOrFail($id);
 
@@ -77,13 +80,20 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update($id, AdminRequest $request)
+    public function update($id, AdminRequest $request): RedirectResponse
     {
+
         $user = User::findOrFail($id);
-        
+
         $user->name = $request->get('name');
         $user->cellphone = $request->get('cellphone');
         $user->email = $request->get('email');
+        
+        if($user->role_id==1){
+            if(is_null($user->api_token)){
+                $user->api_token = Str::random(100);  
+            }
+        }
         
         $user->update();
 
@@ -97,7 +107,7 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id): RedirectResponse
     {
         $user = User::findOrFail($id);
         $user->delete();
@@ -105,7 +115,7 @@ class AdminController extends Controller
         //
     }
 
-    public function restore($id)
+    public function restoreUser($id): RedirectResponse
     {
         User::onlyTrashed()->where('id', $id)->restore();
         return redirect('/admin/users');

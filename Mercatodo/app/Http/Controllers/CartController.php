@@ -15,7 +15,7 @@ class CartController extends Controller
         if(!\Session::has('cart')) \Session::put('cart', array());
     }
 
-    public function show(): view
+    public function show(): View
     {
       $cart = \Session::get('cart');
       $total = $this->total();
@@ -23,7 +23,7 @@ class CartController extends Controller
       return view('cart.add', compact('cart', 'total'));
     }
 
-    public function add(Product $product)
+    public function add(Product $product): RedirectResponse
     {
         $cart = \Session::get('cart');
         $product->quantity=1;
@@ -33,7 +33,7 @@ class CartController extends Controller
         return redirect()->route('cart-show');
     }
 
-    public function delete(Product $product)
+    public function delete(Product $product): RedirectResponse
     {
         $cart = \Session::get('cart');
         unset($cart[$product->id]);
@@ -42,7 +42,7 @@ class CartController extends Controller
         return redirect()->route('cart-show');
     }
 
-    public function update(Product $product, $quantity)
+    public function update(Product $product, $quantity): RedirectResponse
     {
         $cart = \Session::get('cart');
         $cart[$product->id]->quantity = $quantity;
@@ -52,14 +52,14 @@ class CartController extends Controller
         return redirect()->route('cart-show');
     }
 
-    public function trash()
+    public function trash(): RedirectResponse
     {
         \Session::forget('cart');
 
         return redirect()->route('cart-show');
     }
 
-    public function total()
+    public function total(): int
     {
         $cart = \Session::get('cart');
         $total = 0;
@@ -71,13 +71,13 @@ class CartController extends Controller
 
     
     }
-    public function shopping($id)
+    public function shopping($id): View
     {
         $product = Product::find($id);
         return view('cart.shopping', compact('product'));
     }
 
-    public function orderDetail()
+    public function orderDetail(): View
     {
         if(count(\Session::get('cart')) == 0){
             return redirect()->route('home');
