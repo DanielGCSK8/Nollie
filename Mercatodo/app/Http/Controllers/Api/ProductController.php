@@ -73,11 +73,13 @@ class ProductController extends Controller
     public function update(ProductRequest $request, Product $product, int $id): JsonResponse
     {
         $product = Product::findOrFail($id);
+        $input = $request->all();
         if($request->has('image')){
             $img = public_path() . '/images/'. $product->image;
             File::delete($img);
             $input['image'] = $this->uploadFile($request->image);
         }
+
         $product->update($input);
         return response()->json([
             'res' => true,
