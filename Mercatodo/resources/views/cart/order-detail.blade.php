@@ -52,7 +52,8 @@
 
     </h3><hr>
     <a href="{{ route('cart-show') }}" class="btn btn-success"> Regresar </a>
-    <a href="{{ route('confirmation') }}" class="btn btn-success"> Pagar </a>
+    <a href="{{ route('confirmation') }}" class="btn btn-success"> Pagar con Place to Pay </a>
+    <a href="{{ route('paypal') }}" class="btn btn-success"> Pagar con Paypal </a>
     
  
 </div>

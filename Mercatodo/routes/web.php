@@ -83,11 +83,24 @@ Route::get('confirmation', [
 'uses' => 'PaymentsController@payment'
 ]);
 
+
+
 Route::get('status', [
     'as' => 'status',
     'uses' => 'PaymentsController@status'
     ]);
 
+//PayPal
+
+Route::get('paypal', [
+    'as' => 'paypal',
+    'uses' => 'PaymentsPaypalController@createOrder'
+    ]);
+
+    Route::get('paypalStatus', [
+        'as' => 'paypalStatus',
+        'uses' => 'PaymentsPaypalController@paypalStatus'
+        ]);
     //excel
 
     Route::get('exportProducts', 'ExportController@exportProducts')->name('exportProducts');
