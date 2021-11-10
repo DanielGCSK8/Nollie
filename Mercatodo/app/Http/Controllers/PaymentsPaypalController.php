@@ -30,6 +30,7 @@ class PaymentsPaypalController extends Controller
             $payPalConfig['client_secret']
         )
     );
+    $this->apiContext->setConfig($payPalConfig['settings']);
 
   }
 
@@ -38,7 +39,7 @@ class PaymentsPaypalController extends Controller
     $cart = \Session::get('cart');
     $total = 0;
         foreach($cart as $item){
-            $total += $item->price * $item->quantity;
+            $total += ($item->price * $item->quantity)/(3712.55);
         }
 
     $payer = new Payer();

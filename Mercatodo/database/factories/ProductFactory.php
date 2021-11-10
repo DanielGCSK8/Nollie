@@ -8,11 +8,13 @@ use Faker\Generator as Faker;
 
 $factory->define(Product::class, function (Faker $faker) {
     $cost = $faker->numberBetween(0, 999999);
+    $quantity = $faker->numberBetween(0, 7);
     
     return [
         'name'=> $faker->name,
-        'price'=> $cost*1.10,
-        'category_id'=>  Category::all()->random()->id,
+        'price' => $cost*1.10,
+        'category_id' =>  Category::all()->random()->id,
+        'quantity' => $quantity,
         'description' => $faker->sentence(10),
         'created_at' => $faker->dateTimeBetween('-30 days', 'now'),
     ];
