@@ -2,7 +2,7 @@
 @section('content')
 
 
-         @if($cart)
+         @if(!$carts->isEmpty())
          <div class="container">
           <div class="panel panel-default">
               <div class="panel-heading">
@@ -31,7 +31,7 @@
                           </tr>
                       </tfoot>
                       <tbody>
-                        @foreach($cart as $product)
+                        @foreach($carts as $product)
                           <tr>
                               <th>{{ $product->name }}</th>
                               <td style="width:20%;">
@@ -40,11 +40,11 @@
                               <td>${{number_format($product->price) }}</td>
                               <td style="width:15%;">
                                 <center>
-                                <input style="width:30%"type="number" value="{{ $product->quantity }}" id="product_{{ $product->id }}" name="quantity" min="1" max="">
-                                <a href=""
-                                class = "btn btn-warning btn-update-item"
-                                data-href="{{ route('cart-update', $product->id) }}"
-                                data-id="{{ $product->id }}"
+                                <input style="width:30%"type="number" value="{{ $product->quantity }}" 
+                                id="product_{{ $product->cart_id }}" name="quantity" min="1" max="">
+                                <a href="" class = "btn btn-warning btn-update-item"
+                                data-href="{{ route('cart-update', $product->cart_id) }}"
+                                data-id="{{ $product->cart_id }}"
                                 >
                                     <i class="fas fa-sync-alt"></i>
                                 </a></td>
@@ -52,7 +52,7 @@
                               <td>${{ number_format($product->price * ($product->quantity))}}</td>
                               <td>
                                 <center>
-                                <a class="btn btn-danger" href="{{ route('cart-delete', $product->id) }}">
+                                <a class="btn btn-danger" href="{{ route('cart-delete', $product->cart_id) }}">
                                 <i class="fas fa-trash-alt"></i>
                               </a>
                               </td>

@@ -2,15 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
-use App\Model\Auth;
 use App\Model\Order;
 use App\Model\OrderDetail;
 use App\Model\Product;
 use GuzzleHttp\Client;
-use GuzzleHttp\Exception\GuzzleException;
-use GuzzleHttp\Exception\ClientException;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class PaymentsController extends Controller
 {
@@ -38,10 +36,9 @@ class PaymentsController extends Controller
             ]);
 
    
-    $cart = \Session::get('cart');
     $total = 0;
+    $cart = $this->obtenerDatos();
         foreach($cart as $item){
-            $id=$item->id;
             $total += $item->price * $item->quantity;
         }
 
@@ -55,7 +52,7 @@ class PaymentsController extends Controller
                      "tranKey" => $tranKey
                  ],
                  'payment' => [
-                     'reference' => $id,
+                     'reference' => 1,
                      'description' => 'Pago básico de prueba',
                      'amount' => [
                          'currency' => 'COP',
@@ -199,6 +196,18 @@ class PaymentsController extends Controller
          $prod->save();
      }
 
+ }
+
+ public function obtenerDatos()
+ {
+    $idUser = Auth::user()->id;
+    $cart = DB::table('carts as c')
+        ->join('products as p', 'c.product_id', '=', 'p.id')
+        ->join('users as u', 'c.user_id', '=', 'u.id')
+        ->select('p.name', 'p.price', 'c.quantity')
+        ->where('u.id', '=', $idUser)
+        ->get();
+        return $cart;
  }
 
 }

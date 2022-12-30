@@ -2,7 +2,7 @@
 
 return [
    
-    'baseUrl' => env('P2P_BASE_URL', 'https://test.placetopay.com/redirection/'),
+    'baseUrl' => env('P2P_BASE_URL', 'https://checkout-co.placetopay.dev/'),
 
     
     'authId' => env('PTP_AUTH', '6dd490faf9cb87a9862245da41170ff2'),
